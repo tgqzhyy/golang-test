@@ -29,11 +29,10 @@ func main() {
 		log.Fatalln("failed to initialize glfw:", err)
 	}
 	defer glfw.Terminate()
-
 	glfw.WindowHint(glfw.Resizable, glfw.False)
 	glfw.WindowHint(glfw.ContextVersionMajor, 2)
 	glfw.WindowHint(glfw.ContextVersionMinor, 1)
-	window, err := glfw.CreateWindow(800, 600, "Cube", nil, nil)
+	window, err := glfw.CreateWindow(800, 600, "中文标题测试", nil, nil)
 	if err != nil {
 		panic(err)
 	}
