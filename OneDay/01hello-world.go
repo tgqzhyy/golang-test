@@ -1,9 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"golang-test/stringutil"
+)
 
 func main() {
 	fmt.Println("hello_world")
+	fmt.Println(stringutil.Reverse("hello_world!"))
+	fmt.Println(stringutil.Reverse("!dlrow_olleh"))
 }
 /**
 
