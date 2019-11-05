@@ -1,14 +1,13 @@
-/**
-https://www.jianshu.com/p/dbc62a879081
- */
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
 	"net"
 	"os"
+	"encoding/json"
+	"bufio"
+	"hash/crc32"
+	"io"
 )
 
 //数据包的类型
@@ -18,7 +17,7 @@ const(
 )
 
 var(
-	server= "127.0.0.1:8081"
+	server= "0.0.0.0:9999"
 )
 //这里是包的结构体
 type Packet struct {
@@ -130,8 +129,67 @@ func Handle(conn net.Conn) {
 			break
 		case 0x03:
 			length += uint16(recvByte)
+			// 一次申请缓存，初始化游标，准备读数据
+			recvBuffer =make([]byte,length)
+			cursor = 0
+			state =0x04
+			break
+		case 0x04:
+			//不断地在这个状态下读数据，直到满足长度为止
+			recvBuffer[cursor]=recvByte
+			cursor++
+			if cursor == length {
+				state=0x05
+			}
+			break
+		case 0x05:
+			crc16 += uint16(recvByte)*256
+			state =0x06
+			break
+		case 0x06:
+			crc16 += uint16(recvByte)
+			state =0x07
+			break
+		case 0x07:
+			if recvByte == 0xFF{
+				state =0x08
+			}else {
+				state =0x00
+			}
+		case 0x08:
+			if recvByte ==0xFE{
+				//执行数据包校验
+				if (crc32.ChecksumIEEE(recvBuffer) >> 16)& 0xFFFF == uint32(crc16){
+					var packet Packet
+					//把拿到的数据反序列化出来
+					json.Unmarshal(recvBuffer,&packet)
+					//新开协程处理数据
+					go processRecvData(&packet,conn)
+				}else {
+					fmt.Println("丢弃数据！！！")
+				}
+			}
+			//状态机归位，接收下一个包
+			state =0x00
 		}
 
 	}
 
+}
+
+func processRecvData(packet *Packet, conn net.Conn) {
+	switch packet.PacketType {
+	case HEART_BEAT_PACKET:
+		var beatPacket HeartPacket
+		json.Unmarshal(packet.PacketContent,&beatPacket)
+		fmt.Printf("recieve heat beat from [%s] ,data is [%v]\n",conn.RemoteAddr().String(),beatPacket)
+		conn.Write([]byte("heartBeat\n"))
+		return
+	case REPORT_PACKET:
+		var reportPacket ReportPacket
+		json.Unmarshal(packet.PacketContent,&reportPacket)
+		fmt.Printf("recieve report data from [%s] ,data is [%v]\n",conn.RemoteAddr().String(),reportPacket)
+		conn.Write([]byte("Report data has recive\n"))
+		return
+	}
 }
