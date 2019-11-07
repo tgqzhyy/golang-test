@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"net"
-	"os"
-	"encoding/json"
 	"bufio"
+	"encoding/json"
+	"fmt"
 	"hash/crc32"
 	"io"
+	"net"
+	"os"
 )
 
 //数据包的类型

@@ -1,15 +1,15 @@
 package main
 
 import (
-	"os"
-	"fmt"
-	"net"
-	"time"
-	"math/rand"
-	"encoding/json"
 	"bufio"
+	"encoding/json"
+	"fmt"
 	"hash/crc32"
+	"math/rand"
+	"net"
+	"os"
 	_ "sync"
+	"time"
 )
 //数据包类型
 const (
