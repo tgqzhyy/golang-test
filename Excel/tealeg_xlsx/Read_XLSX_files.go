@@ -1,4 +1,4 @@
-package main
+package tealeg_xlsx
 
 import (
 	"fmt"
