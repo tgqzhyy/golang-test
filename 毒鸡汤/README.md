@@ -1,0 +1,11 @@
+# https://github.com/egotong/nows
+毒鸡汤
+最终我还是开源了，
+
+实在扛不住哥几个采集数据的，
+
+代码真的很丑！
+
+没事打开http://www.nows.fun/ 毕竟人生苦短都没苦笑过有什么意思！
+
+# golang版本 采用Beego
