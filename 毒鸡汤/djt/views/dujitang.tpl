@@ -34,7 +34,7 @@
 
 <div class="main-wrapper" style="position: relative; top: -6vh;">
     <div class="container main-sentence justify-content-center text-center">
-        <span id="sentence" style="font-size: 2rem;">{{.djtURL}}</span>
+        <span id="sentence" style="font-size: 2rem;">{{.djt}}</span>
     </div>
 </div>
 
