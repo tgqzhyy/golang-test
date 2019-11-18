@@ -124,6 +124,7 @@
         </div>
       </div>
 {{/*        文件列表内容*/}}
+
       <ul id="directory-listing" class="nav nav-pills nav-stacked">
         <li data-name="documents" data-href="?dir=原始文件"> <a href="?dir=原始文件" class="clearfix" data-name="documents">
             <div class="row">
@@ -154,6 +155,7 @@
       Contact me:
       <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
     </div>
+    <h3>{{.ct}}</h3>
   </footer>
   <div class="backdrop"></div>
 
