@@ -1266,7 +1266,7 @@ INSERT INTO `soul` (`id`, `title`, `hits`) VALUES
 -- 转储表的索引
 --
 
---
+--lin
 -- 表的索引 `soul`
 --
 ALTER TABLE `soul`
