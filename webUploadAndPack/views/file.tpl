@@ -124,27 +124,29 @@
         </div>
       </div>
 {{/*        文件列表内容*/}}
-
       <ul id="directory-listing" class="nav nav-pills nav-stacked">
-        <li data-name="documents" data-href="?dir=原始文件"> <a href="?dir=原始文件" class="clearfix" data-name="documents">
+        <li data-name=".." data-href=".."><a href="javascript:history.go(-1);">
             <div class="row">
-              <span class="file-name col-md-7 col-sm-6 col-xs-9"> <i class="fa fa-folder fa-fw"></i> 原始文件 </span>
+              <span class="file-name col-md-7 col-sm-6 col-xs-9"> <i class="fa fa-folder fa-fw"></i>...</span>
+              <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right"> ... </span>
+              <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right">...</span>
+            </div></a></li>
+        {{range .filelist}}
+        <li data-name={{.Name}} data-href={{.Name}} > <a href="?dir={{.Path}}" class="clearfix" >
+            <div class="row">
+              <span class="file-name col-md-7 col-sm-6 col-xs-9"> <i class="fa fa-folder fa-fw"></i> {{.Name}}</span>
               <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right"> - </span>
-              <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right"> 2019-01-28 07:46:18 </span>
+              <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right"> {{.LastModified}}  </span>
             </div> </a> </li>
-        <li data-name="documents" data-href="?dir=加壳文件"> <a href="?dir=加壳文件" class="clearfix" data-name="documents">
+        {{end}}
+        {{range .contentlist}}
+        <li data-name={{.Name}}  data-href={{.Name}} > <a href="/download/?d={{.Path}}" class="clearfix" >
             <div class="row">
-              <span class="file-name col-md-7 col-sm-6 col-xs-9"> <i class="fa fa-folder fa-fw"></i> 加壳文件 </span>
-              <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right"> - </span>
-              <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right"> 2019-01-28 07:46:18 </span>
-            </div> </a> </li>
-
-        <li data-name="README.md" data-href="README.md"> <a href="README.md" class="clearfix" data-name="README.md">
-            <div class="row">
-              <span class="file-name col-md-7 col-sm-6 col-xs-9"> <i class="fa fa-file-text fa-fw"></i> README.md </span>
-              <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right"> 2.25KB </span>
-              <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right"> 2019-08-21 02:09:16 </span>
-            </div> </a> <a href="javascript:void(0)" class="file-info-button"> <i class="fa fa-info-circle"></i> </a> </li>
+              <span class="file-name col-md-7 col-sm-6 col-xs-9"> <i class="fa fa-file-text fa-fw"></i> {{.Name}}</span>
+              <span class="file-size col-md-2 col-sm-2 col-xs-3 text-right"> {{.Size}}MB </span>
+              <span class="file-modified col-md-3 col-sm-4 hidden-xs text-right"> {{.LastModified}}</span>
+            </div> </a></li>
+        {{end}}
       </ul>
     </div>
 
@@ -155,7 +157,6 @@
       Contact me:
       <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
     </div>
-    <h3>{{.ct}}</h3>
   </footer>
   <div class="backdrop"></div>
 

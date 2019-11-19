@@ -79,7 +79,8 @@
       <h1 class="logo">DNGuard加壳--上传</h1>
     </a>
     <div class="description">
-      <form action="/upload" method="post" enctype="multipart/form-data" >
+      <span>emmm,一句话就是加最硬的壳</span>
+      <form action="/upload" method="post" enctype="multipart/form-data" style="margin-top: 8px;">
         文件：<input type="file" name="file" value=""style="border:0.5px solid #fdde69">
         <input type="submit" value="提交"
                style="padding-left: 4px;
