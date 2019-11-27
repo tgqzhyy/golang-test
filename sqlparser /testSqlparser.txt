@@ -1,0 +1,358 @@
+{
+	"Action": "create",
+	"Table": {
+		"Name": "",
+		"Qualifier": ""
+	},
+	"NewName": {
+		"Name": "permission",
+		"Qualifier": ""
+	},
+	"IfExists": false,
+	"TableSpec": {
+		"Columns": [
+			{
+				"Name": "permission_id",
+				"Type": {
+					"Type": "int",
+					"NotNull": true,
+					"Autoincrement": true,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5p2D6ZmQ57yW5Y+3"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "MTE="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "app_id",
+				"Type": {
+					"Type": "varchar",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5bqU55So57yW5Y+3"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "MzI="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "utf8mb4_bin",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "permission_key",
+				"Type": {
+					"Type": "varchar",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5p2D6ZmQS2V5"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "MzI="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "utf8mb4_bin",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "permission_name",
+				"Type": {
+					"Type": "varchar",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5p2D6ZmQ5ZCN56ew"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "MzI="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "utf8mb4_bin",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "permission_desc",
+				"Type": {
+					"Type": "varchar",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5p2D6ZmQ5o+P6L+w"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "NTEy"
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "utf8mb4_bin",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "parent_permission_id",
+				"Type": {
+					"Type": "int",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "54i257qn5p2D6ZmQ57yW5Y+3"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "MTE="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "permission_type",
+				"Type": {
+					"Type": "tinyint",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5p2D6ZmQ57G75Z6L"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "NA=="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "permission_detail",
+				"Type": {
+					"Type": "varchar",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5p2D6ZmQ6K+m5oOF"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "MTAyNA=="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "utf8mb4_bin",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "is_deleted",
+				"Type": {
+					"Type": "tinyint",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": null,
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5piv5ZCm5Yig6Zmk"
+					},
+					"Length": {
+						"Type": 1,
+						"Val": "NA=="
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "created_at",
+				"Type": {
+					"Type": "timestamp",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": {
+						"Type": 5,
+						"Val": "Y3VycmVudF90aW1lc3RhbXA="
+					},
+					"OnUpdate": null,
+					"Comment": {
+						"Type": 0,
+						"Val": "5Yib5bu65pe26Ze0"
+					},
+					"Length": {
+						"Type": 0,
+						"Val": ""
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			},
+			{
+				"Name": "modified_at",
+				"Type": {
+					"Type": "timestamp",
+					"NotNull": true,
+					"Autoincrement": false,
+					"Default": {
+						"Type": 5,
+						"Val": "Y3VycmVudF90aW1lc3RhbXA="
+					},
+					"OnUpdate": {
+						"Type": 5,
+						"Val": "Y3VycmVudF90aW1lc3RhbXA="
+					},
+					"Comment": {
+						"Type": 0,
+						"Val": "5L+u5pS55pe26Ze0"
+					},
+					"Length": {
+						"Type": 0,
+						"Val": ""
+					},
+					"Unsigned": false,
+					"Zerofill": false,
+					"Scale": null,
+					"Charset": "",
+					"Collate": "",
+					"EnumValues": null,
+					"KeyOpt": 0
+				}
+			}
+		],
+		"Indexes": [
+			{
+				"Info": {
+					"Type": "primary key",
+					"Name": "PRIMARY",
+					"Primary": true,
+					"Spatial": false,
+					"Unique": true
+				},
+				"Columns": [
+					{
+						"Column": "permission_id",
+						"Length": null
+					}
+				],
+				"Options": null
+			},
+			{
+				"Info": {
+					"Type": "unique key",
+					"Name": "uk_permission_permission_key",
+					"Primary": false,
+					"Spatial": false,
+					"Unique": true
+				},
+				"Columns": [
+					{
+						"Column": "permission_key",
+						"Length": null
+					}
+				],
+				"Options": null
+			},
+			{
+				"Info": {
+					"Type": "unique key",
+					"Name": "uk_permission_app_id_permission_name",
+					"Primary": false,
+					"Spatial": false,
+					"Unique": true
+				},
+				"Columns": [
+					{
+						"Column": "app_id",
+						"Length": null
+					},
+					{
+						"Column": "permission_name",
+						"Length": null
+					}
+				],
+				"Options": null
+			}
+		],
+		"Options": " ENGINE=InnoDB default charset=utf8mb4 collate=utf8mb4_bin comment='权限'"
+	},
+	"PartitionSpec": null,
+	"VindexSpec": null,
+	"VindexCols": null
+}
