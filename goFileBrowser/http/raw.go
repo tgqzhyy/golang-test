@@ -7,10 +7,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"golang-test/goFileBrowser/files"
-	"golang-test/goFileBrowser/users"
 	"github.com/hacdias/fileutils"
 	"github.com/mholt/archiver"
+	"golang-test/goFileBrowser/files"
+	"golang-test/goFileBrowser/users"
 )
 
 func parseQueryFiles(r *http.Request, f *files.FileInfo, u *users.User) ([]string, error) {

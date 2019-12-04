@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"golang-test/goFileBrowser/settings"
 	"github.com/spf13/cobra"
+	"golang-test/goFileBrowser/settings"
 )
 
 func init() {

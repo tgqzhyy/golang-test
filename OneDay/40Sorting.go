@@ -5,19 +5,20 @@ import (
 	"sort"
 )
 
-func main()  {
+func main() {
 
-	strs := []string{"c","a","b","A"}
+	strs := []string{"c", "a", "b", "A"}
 	sort.Strings(strs)
-	fmt.Println("Strings:",strs)
+	fmt.Println("Strings:", strs)
 
-	ints :=[]int{7,2,4}
+	ints := []int{7, 2, 4}
 	sort.Ints(ints)
-	fmt.Println("Ints:",ints)
+	fmt.Println("Ints:", ints)
 
-	s :=sort.IntsAreSorted(ints)
-	fmt.Println("sorted:",s)
+	s := sort.IntsAreSorted(ints)
+	fmt.Println("sorted:", s)
 }
+
 /**
 Strings: [A a b c]
 Ints: [2 4 7]

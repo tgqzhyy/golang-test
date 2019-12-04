@@ -7,16 +7,16 @@ v := <-ch //冲channel ch中接受数据，并将数据赋值给V
 就像map和slice数据类型一样channel必须先创建在使用：
 ch :=make(chan int)
 
- */
+*/
 package main
 
 import "fmt"
 
 func main() {
-	messages :=make(chan string)
+	messages := make(chan string)
 
-	go func() {messages <-"ping"}()
+	go func() { messages <- "ping" }()
 
-	msg :=<-messages
+	msg := <-messages
 	fmt.Println(msg)
 }

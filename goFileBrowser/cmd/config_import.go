@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"reflect"
 
+	"github.com/spf13/cobra"
 	"golang-test/goFileBrowser/auth"
 	"golang-test/goFileBrowser/settings"
-	"github.com/spf13/cobra"
 )
 
 func init() {

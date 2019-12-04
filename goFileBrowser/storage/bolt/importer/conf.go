@@ -11,9 +11,9 @@ import (
 	"golang-test/goFileBrowser/users"
 
 	"github.com/asdine/storm"
+	toml "github.com/pelletier/go-toml"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/storage"
-	toml "github.com/pelletier/go-toml"
 	yaml "gopkg.in/yaml.v2"
 )
 

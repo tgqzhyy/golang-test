@@ -13,8 +13,8 @@ import (
 )
 
 var (
-	histogram *ui.Area
-	datapoints [10]*ui.Spinbox
+	histogram   *ui.Area
+	datapoints  [10]*ui.Spinbox
 	colorButton *ui.ColorButton
 
 	currentPoint = -1
@@ -22,10 +22,10 @@ var (
 
 // some metrics
 const (
-	xoffLeft = 20		// histogram margins
-	yoffTop = 20
-	xoffRight = 20
-	yoffBottom = 20
+	xoffLeft    = 20 // histogram margins
+	yoffTop     = 20
+	xoffRight   = 20
+	yoffBottom  = 20
 	pointRadius = 5
 )
 
@@ -46,13 +46,13 @@ func mkSolidBrush(color uint32, alpha float64) *ui.DrawBrush {
 // and some colors
 // names and values from https://msdn.microsoft.com/en-us/library/windows/desktop/dd370907%28v=vs.85%29.aspx
 const (
-	colorWhite = 0xFFFFFF
-	colorBlack = 0x000000
+	colorWhite      = 0xFFFFFF
+	colorBlack      = 0x000000
 	colorDodgerBlue = 0x1E90FF
 )
 
 func pointLocations(width, height float64) (xs, ys [10]float64) {
-	xincr := width / 9		// 10 - 1 to make the last point be at the end
+	xincr := width / 9 // 10 - 1 to make the last point be at the end
 	yincr := height / 100
 	for i := 0; i < 10; i++ {
 		// get the value of the point
@@ -103,18 +103,18 @@ func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
 	graphWidth, graphHeight := graphSize(p.AreaWidth, p.AreaHeight)
 
 	sp := &ui.DrawStrokeParams{
-		Cap:			ui.DrawLineCapFlat,
-		Join:			ui.DrawLineJoinMiter,
-		Thickness:	2,
-		MiterLimit:	ui.DrawDefaultMiterLimit,
+		Cap:        ui.DrawLineCapFlat,
+		Join:       ui.DrawLineJoinMiter,
+		Thickness:  2,
+		MiterLimit: ui.DrawDefaultMiterLimit,
 	}
 
 	// draw the axes
 	brush = mkSolidBrush(colorBlack, 1.0)
 	path = ui.DrawNewPath(ui.DrawFillModeWinding)
 	path.NewFigure(xoffLeft, yoffTop)
-	path.LineTo(xoffLeft, yoffTop + graphHeight)
-	path.LineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
+	path.LineTo(xoffLeft, yoffTop+graphHeight)
+	path.LineTo(xoffLeft+graphWidth, yoffTop+graphHeight)
 	path.End()
 	p.Context.Stroke(path, brush, sp)
 	path.Free()
@@ -151,7 +151,7 @@ func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
 		path.NewFigureWithArc(
 			xs[currentPoint], ys[currentPoint],
 			pointRadius,
-			0, 6.23,		// TODO pi
+			0, 6.23, // TODO pi
 			false)
 		path.End()
 		// use the same brush as for the histogram lines
@@ -164,10 +164,10 @@ func inPoint(x, y float64, xtest, ytest float64) bool {
 	// TODO switch to using a matrix
 	x -= xoffLeft
 	y -= yoffTop
-	return (x >= xtest - pointRadius) &&
-		(x <= xtest + pointRadius) &&
-		(y >= ytest - pointRadius) &&
-		(y <= ytest + pointRadius)
+	return (x >= xtest-pointRadius) &&
+		(x <= xtest+pointRadius) &&
+		(y >= ytest-pointRadius) &&
+		(y <= ytest+pointRadius)
 }
 
 func (areaHandler) MouseEvent(a *ui.Area, me *ui.AreaMouseEvent) {

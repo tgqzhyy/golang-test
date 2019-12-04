@@ -9,37 +9,37 @@ import (
 func main() {
 	dateCmd := exec.Command("date")
 
-	dateOut,err := dateCmd.Output()
-	if err !=nil{
+	dateOut, err := dateCmd.Output()
+	if err != nil {
 		panic(err)
 	}
 	fmt.Println("> date")
 	fmt.Println(string(dateOut))
 
-	grepCmd := exec.Command("grep","hello")
+	grepCmd := exec.Command("grep", "hello")
 
-	grepIn,_ :=grepCmd.StdinPipe()
-	grepOut,_:=grepCmd.StdoutPipe()
+	grepIn, _ := grepCmd.StdinPipe()
+	grepOut, _ := grepCmd.StdoutPipe()
 	grepCmd.Start()
 	grepIn.Write([]byte("hello grep\n goodbye grep"))
 	grepIn.Close()
-	grepBytes,_:=ioutil.ReadAll(grepOut)
+	grepBytes, _ := ioutil.ReadAll(grepOut)
 	grepCmd.Wait()
 
 	fmt.Println("> grep hello")
 	fmt.Println(string(grepBytes))
 
-	lsCmd :=exec.Command("bash","-c","ls -a -l -h")
-	lsOut,err := lsCmd.Output()
-	if err !=nil{
+	lsCmd := exec.Command("bash", "-c", "ls -a -l -h")
+	lsOut, err := lsCmd.Output()
+	if err != nil {
 		panic(err)
 	}
 	fmt.Println("> ls -a -l -h")
 	fmt.Println(string(lsOut))
 
-	PingCmd :=exec.Command("bash","-c","ping -c 3 www.baidu.com")
-	PingOut,err :=PingCmd.Output()
-	if err !=nil{
+	PingCmd := exec.Command("bash", "-c", "ping -c 3 www.baidu.com")
+	PingOut, err := PingCmd.Output()
+	if err != nil {
 		panic(err)
 	}
 	fmt.Println(">ping -c 3 www.baidu.com")

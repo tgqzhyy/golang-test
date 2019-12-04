@@ -46,22 +46,23 @@ http.ListenAndServe(":80", r)
 */
 
 func main() {
-	r :=mux.NewRouter()
+	r := mux.NewRouter()
 
 	r.HandleFunc("/books/{title}/page/{page}", func(w http.ResponseWriter, r *http.Request) {
-		vars :=mux.Vars(r)
-		title :=vars["title"]
-		page :=vars["page"]
+		vars := mux.Vars(r)
+		title := vars["title"]
+		page := vars["page"]
 
-		fmt.Fprintf(w,"You've requested the book :%s on page %s\n",title,page)
+		fmt.Fprintf(w, "You've requested the book :%s on page %s\n", title, page)
 	})
-	defer http.ListenAndServe(":8090",r)
+	defer http.ListenAndServe(":8090", r)
 	log.Print("http://localhost:8090")
 }
+
 /**
 http://localhost:8090/books/22/page/88
 You've requested the book :22 on page 88
- */
+*/
 
 /**
 该功能gorilla/mux路由器
@@ -90,4 +91,4 @@ r.HandleFunc("/insecure", InsecureHandler).Schemes("http")
 bookrouter := r.PathPrefix("/books").Subrouter()
 bookrouter.HandleFunc("/", AllBooks)
 bookrouter.HandleFunc("/{title}", GetBook)
- */
+*/

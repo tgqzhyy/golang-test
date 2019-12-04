@@ -8,11 +8,11 @@ import (
 	"strings"
 	"text/tabwriter"
 
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 	"golang-test/goFileBrowser/auth"
 	"golang-test/goFileBrowser/errors"
 	"golang-test/goFileBrowser/settings"
-	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 )
 
 func init() {

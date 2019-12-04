@@ -13,15 +13,15 @@ import (
 	"strings"
 	"syscall"
 
+	homedir "github.com/mitchellh/go-homedir"
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
+	v "github.com/spf13/viper"
 	"golang-test/goFileBrowser/auth"
 	fbhttp "golang-test/goFileBrowser/http"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/storage"
 	"golang-test/goFileBrowser/users"
-	homedir "github.com/mitchellh/go-homedir"
-	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
-	v "github.com/spf13/viper"
 	lumberjack "gopkg.in/natefinch/lumberjack.v2"
 )
 

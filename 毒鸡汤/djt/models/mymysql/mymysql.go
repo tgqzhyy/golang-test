@@ -23,12 +23,12 @@ func init() {
 	dbcon := user + ":" + pwd + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8"
 	log.Println(dbcon)
 	/*"root:root@tcp(localhost:3306)/test?charset=utf8"*/
-	db,err :=sql.Open("mysql",dbcon)
-	if err !=nil{
+	db, err := sql.Open("mysql", dbcon)
+	if err != nil {
 		panic(err)
 	}
-	if err:= db.Ping();err !=nil{
+	if err := db.Ping(); err != nil {
 		panic(err)
 	}
-	dbSelect=db
+	dbSelect = db
 }

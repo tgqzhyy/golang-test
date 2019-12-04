@@ -4,8 +4,8 @@ import (
 	"os"
 	"strings"
 
-	"golang-test/goFileBrowser/rules"
 	"github.com/spf13/afero"
+	"golang-test/goFileBrowser/rules"
 )
 
 type searchOptions struct {

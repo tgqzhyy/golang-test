@@ -74,6 +74,7 @@ func main() {
 	writeOpsFinal := atomic.LoadUint64(&writeOps)
 	fmt.Println("writeOps:", writeOpsFinal)
 }
+
 /**
 readOps: 88816
 writeOps: 8877

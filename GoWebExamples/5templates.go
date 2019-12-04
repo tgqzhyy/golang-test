@@ -4,7 +4,7 @@ fuck,这种简单的代码，居然运行不起来，检查了N多遍代码输�
 这个是缓存的问题，重启就解决。
 Go的html/template软件包为HTML模板提供了丰富的模板语言。它主要用于Web应用程序中，以结构化的方式在客户端的浏览器中显示数据。Go的模板语言的一大优势是自动转义数据。无需担心XSS攻击，因为Go会解析HTML模板并在将其显示给浏览器之前转义所有输入。
 
- */
+*/
 package main
 
 import (
@@ -15,7 +15,7 @@ import (
 
 type Todo struct {
 	Title string
-	Done bool
+	Done  bool
 }
 
 type TodoPageData struct {
@@ -30,18 +30,16 @@ func main() {
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		data := TodoPageData{
 			PageTitle: "My TODO list",
-			Todos:     []Todo{
-				{Title:"Task1",Done:false},
-				{Title:"Task2",Done:true},
-				{Title:"Task3",Done:true},
+			Todos: []Todo{
+				{Title: "Task1", Done: false},
+				{Title: "Task2", Done: true},
+				{Title: "Task3", Done: true},
 			},
 		}
-		tmpl.Execute(writer,data)
+		tmpl.Execute(writer, data)
 	})
 	log.Print("http://localhost:8090")
-	http.ListenAndServe(":8090",nil)
-
-
+	http.ListenAndServe(":8090", nil)
 
 }
 

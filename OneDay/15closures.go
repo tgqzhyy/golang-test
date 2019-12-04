@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 //闭包
-func intSeq() func() int{
-	i :=0
+func intSeq() func() int {
+	i := 0
 	return func() int {
 		i++
 		return i
@@ -12,14 +12,15 @@ func intSeq() func() int{
 }
 
 func main() {
-	nextInt :=intSeq()
+	nextInt := intSeq()
 
 	fmt.Println(nextInt())
 	fmt.Println(nextInt())
 	fmt.Println(nextInt())
-	newInts :=intSeq()
+	newInts := intSeq()
 	fmt.Println(newInts())
 }
+
 /**
 
 Go支持匿名函数，可以形成闭包。当您想要内联定义函数而不必命名时，匿名函数很有用。

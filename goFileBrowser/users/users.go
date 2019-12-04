@@ -6,9 +6,9 @@ import (
 
 	"golang-test/goFileBrowser/errors"
 
+	"github.com/spf13/afero"
 	"golang-test/goFileBrowser/files"
 	"golang-test/goFileBrowser/rules"
-	"github.com/spf13/afero"
 )
 
 // ViewMode describes a view mode.

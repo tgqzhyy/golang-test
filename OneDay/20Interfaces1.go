@@ -23,10 +23,9 @@ func (iPhone IPhone) call() {
 }
 
 type Huawei struct {
-
 }
 
-func (huawei Huawei)call()  {
+func (huawei Huawei) call() {
 	fmt.Println("这是华为")
 }
 func main() {
@@ -38,11 +37,11 @@ func main() {
 	phone = new(IPhone)
 	phone.call()
 
-	phone =new(Huawei)
+	phone = new(Huawei)
 	phone.call()
 
-
 }
+
 /**
 I am Nokia, I can call you!
 I am iPhone, I can call you!

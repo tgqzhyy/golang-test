@@ -3,9 +3,9 @@ package http
 import (
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/storage"
-	"github.com/gorilla/mux"
 )
 
 type modifyRequest struct {

@@ -6,19 +6,18 @@ import (
 )
 
 type point struct {
-	x,y int
+	x, y int
 }
 
 func main() {
-	p :=point{1,2}
-	fmt.Printf("%v\n",p)
+	p := point{1, 2}
+	fmt.Printf("%v\n", p)
 
-	fmt.Printf("%5v\n",p)
-	fmt.Printf("%+v\n",p)
-	fmt.Printf("%+5v\n",p)
+	fmt.Printf("%5v\n", p)
+	fmt.Printf("%+v\n", p)
+	fmt.Printf("%+5v\n", p)
 
-
-	fmt.Printf("%#v\n",p)
+	fmt.Printf("%#v\n", p)
 
 	fmt.Printf("%t\n", true)
 	fmt.Printf("%d\n", 123)
@@ -41,6 +40,7 @@ func main() {
 	fmt.Println(s)
 	fmt.Fprintf(os.Stderr, "an %s\n", "error")
 }
+
 /**
 {1 2}
 {    1     2}
@@ -67,4 +67,4 @@ true
 a string
 an error
 
- */
+*/

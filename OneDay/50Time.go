@@ -22,7 +22,7 @@ func main() {
 	p(then.Minute())
 	p(then.Second())
 	p(then.Nanosecond())
-	p("Location:",then.Location())
+	p("Location:", then.Location())
 
 	p(then.Weekday())
 

@@ -13,7 +13,7 @@ import (
 
 var (
 	fontButton *ui.FontButton
-	alignment *ui.Combobox
+	alignment  *ui.Combobox
 
 	attrstr *ui.AttributedString
 )
@@ -70,11 +70,11 @@ func makeAttributedString() {
 
 	attrstr.AppendUnattributed("and control over OpenType features such as ligatures (for instance, ")
 	appendWithAttributes("afford", ui.OpenTypeFeatures{
-		ui.ToOpenTypeTag('l', 'i', 'g', 'a'):		0,
+		ui.ToOpenTypeTag('l', 'i', 'g', 'a'): 0,
 	})
 	attrstr.AppendUnattributed(" vs. ")
 	appendWithAttributes("afford", ui.OpenTypeFeatures{
-		ui.ToOpenTypeTag('l', 'i', 'g', 'a'):		1,
+		ui.ToOpenTypeTag('l', 'i', 'g', 'a'): 1,
 	})
 	attrstr.AppendUnattributed(").\n")
 
@@ -85,10 +85,10 @@ type areaHandler struct{}
 
 func (areaHandler) Draw(a *ui.Area, p *ui.AreaDrawParams) {
 	tl := ui.DrawNewTextLayout(&ui.DrawTextLayoutParams{
-		String:		attrstr,
-		DefaultFont:	fontButton.Font(),
-		Width:		p.AreaWidth,
-		Align:		ui.DrawTextAlign(alignment.Selected()),
+		String:      attrstr,
+		DefaultFont: fontButton.Font(),
+		Width:       p.AreaWidth,
+		Align:       ui.DrawTextAlign(alignment.Selected()),
 	})
 	defer tl.Free()
 	p.Context.Text(tl, 0, 0)
@@ -152,7 +152,7 @@ func setupUI() {
 	alignment.Append("Left")
 	alignment.Append("Center")
 	alignment.Append("Right")
-	alignment.SetSelected(0)		// start with left alignment
+	alignment.SetSelected(0) // start with left alignment
 	alignment.OnSelected(func(*ui.Combobox) {
 		area.QueueRedrawAll()
 	})

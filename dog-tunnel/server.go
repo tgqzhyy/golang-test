@@ -18,9 +18,10 @@ import (
 	"golang-test/dog-tunnel/auth"
 	"golang-test/dog-tunnel/common"
 )
+
 /**
 使用flag传参，蛋疼方式，虽然很轻量吧
- */
+*/
 var listenAddr = flag.String("addr", "0.0.0.0:8000", "server addr")
 var listenAddrUDP = flag.String("addrudp", "0.0.0.0:8018", "udp server addr")
 var bUseSSL = flag.Bool("ssl", false, "use ssl")

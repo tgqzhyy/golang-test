@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/gotk3/gotk3/glib"
+	"fmt"
 	"github.com/gotk3/gotk3/gdk"
+	"github.com/gotk3/gotk3/glib"
 	"github.com/gotk3/gotk3/gtk"
 	"log"
-	"fmt"
 	"os"
 )
 
@@ -21,15 +21,15 @@ const envIconPathKey = "EXAMPLE_ICON_PATH"
 
 // Icons Pixbuf representation
 var (
-    imageOK   *gdk.Pixbuf = nil
-    imageFAIL *gdk.Pixbuf = nil
+	imageOK   *gdk.Pixbuf = nil
+	imageFAIL *gdk.Pixbuf = nil
 )
 
 // Load the icon image data from file:
 func initIcons() error {
 	iconPath := os.Getenv(envIconPathKey)
 	if len(iconPath) == 0 {
-		log.Fatal("Missing Environment variable ", envIconPathKey);
+		log.Fatal("Missing Environment variable ", envIconPathKey)
 	}
 	var err error
 	imageOK, err = gdk.PixbufNewFromFile(fmt.Sprintf("%s/green.png", iconPath))
@@ -123,7 +123,7 @@ func addSubRow(treeStore *gtk.TreeStore, iter *gtk.TreeIter, icon *gdk.Pixbuf, t
 }
 
 // Create and initialize the window
-func setupWindow(title string) (*gtk.Window) {
+func setupWindow(title string) *gtk.Window {
 	win, err := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	if err != nil {
 		log.Fatal("Unable to create window:", err)
@@ -166,21 +166,20 @@ func main() {
 	treeView, treeStore := setupTreeView()
 	win.Add(treeView)
 
-
 	// Add some rows to the tree store
 	iter1 = addRow(treeStore, imageOK, "Testsuite 1")
 	iter2 = addSubRow(treeStore, iter1, imageOK, "test1-1")
 	iter2 = addSubRow(treeStore, iter1, imageOK, "test1-2")
-	        addSubRow(treeStore, iter2, imageOK, "test1-2-1")
-	        addSubRow(treeStore, iter2, imageOK, "test1-2-2")
-	        addSubRow(treeStore, iter2, imageOK, "test1-2-3")
+	addSubRow(treeStore, iter2, imageOK, "test1-2-1")
+	addSubRow(treeStore, iter2, imageOK, "test1-2-2")
+	addSubRow(treeStore, iter2, imageOK, "test1-2-3")
 	iter2 = addSubRow(treeStore, iter1, imageOK, "test1-3")
 	iter1 = addRow(treeStore, imageFAIL, "Testsuite 2")
 	iter2 = addSubRow(treeStore, iter1, imageOK, "test2-1")
 	iter2 = addSubRow(treeStore, iter1, imageOK, "test2-2")
 	iter2 = addSubRow(treeStore, iter1, imageFAIL, "test2-3")
-	        addSubRow(treeStore, iter2, imageOK, "test2-3-1")
-	        addSubRow(treeStore, iter2, imageFAIL, "test2-3-2")
+	addSubRow(treeStore, iter2, imageOK, "test2-3-1")
+	addSubRow(treeStore, iter2, imageFAIL, "test2-3-2")
 
 	selection, err := treeView.GetSelection()
 	if err != nil {

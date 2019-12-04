@@ -1,7 +1,7 @@
 /**
 echo 'hello'   > /tmp/lines
 echo 'filter' >> /tmp/lines
- */
+*/
 package main
 
 import (

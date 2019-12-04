@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 
 	"github.com/asdine/storm"
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/storage"
 	"golang-test/goFileBrowser/storage/bolt"
-	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 	yaml "gopkg.in/yaml.v2"
 )
 

@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/gorilla/mux"
 	"golang-test/goFileBrowser/errors"
 	"golang-test/goFileBrowser/users"
-	"github.com/gorilla/mux"
 )
 
 type modifyUserRequest struct {

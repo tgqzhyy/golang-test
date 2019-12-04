@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"golang-test/goFileBrowser/runner"
 	"github.com/gorilla/websocket"
+	"golang-test/goFileBrowser/runner"
 )
 
 var upgrader = websocket.Upgrader{

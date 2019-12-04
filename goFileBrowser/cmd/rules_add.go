@@ -3,10 +3,10 @@ package cmd
 import (
 	"regexp"
 
+	"github.com/spf13/cobra"
 	"golang-test/goFileBrowser/rules"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/users"
-	"github.com/spf13/cobra"
 )
 
 func init() {

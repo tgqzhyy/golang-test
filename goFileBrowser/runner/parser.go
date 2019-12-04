@@ -3,8 +3,8 @@ package runner
 import (
 	"os/exec"
 
-	"golang-test/goFileBrowser/settings"
 	"github.com/caddyserver/caddy"
+	"golang-test/goFileBrowser/settings"
 )
 
 // ParseCommand parses the command taking in account if the current

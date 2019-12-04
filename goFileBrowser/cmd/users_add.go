@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"golang-test/goFileBrowser/users"
 	"github.com/spf13/cobra"
+	"golang-test/goFileBrowser/users"
 )
 
 func init() {

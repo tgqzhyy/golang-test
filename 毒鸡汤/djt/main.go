@@ -5,6 +5,7 @@ import (
 	_ "golang-test/毒鸡汤/djt/routers"
 	"time"
 )
+
 type Store struct {
 	Id              int64
 	Title           string
@@ -15,9 +16,6 @@ type Store struct {
 	TopicLastUserId int64
 }
 
-
-
 func main() {
 	beego.Run()
 }
-

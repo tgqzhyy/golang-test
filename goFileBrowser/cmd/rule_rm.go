@@ -3,9 +3,9 @@ package cmd
 import (
 	"strconv"
 
+	"github.com/spf13/cobra"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/users"
-	"github.com/spf13/cobra"
 )
 
 func init() {

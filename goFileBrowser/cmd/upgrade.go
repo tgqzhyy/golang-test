@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"golang-test/goFileBrowser/storage/bolt/importer"
 	"github.com/spf13/cobra"
+	"golang-test/goFileBrowser/storage/bolt/importer"
 )
 
 func init() {

@@ -9,20 +9,20 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"image"
-	_ "image/png"
 	"image/draw"
-	"bytes"
+	_ "image/png"
 
 	"github.com/andlabs/ui"
 	_ "github.com/andlabs/ui/winmanifest"
 )
 
 type modelHandler struct {
-	row9Text		string
-	yellowRow	int
-	checkStates	[15]int
+	row9Text    string
+	yellowRow   int
+	checkStates [15]int
 }
 
 func newModelHandler() *modelHandler {
@@ -34,15 +34,15 @@ func newModelHandler() *modelHandler {
 
 func (mh *modelHandler) ColumnTypes(m *ui.TableModel) []ui.TableValue {
 	return []ui.TableValue{
-		ui.TableString(""),		// column 0 text
-		ui.TableString(""),		// column 1 text
-		ui.TableString(""),		// column 2 text
-		ui.TableColor{},			// row background color
-		ui.TableColor{},			// column 1 text color
-		ui.TableImage{},		// column 1 image
-		ui.TableString(""),		// column 4 button text
-		ui.TableInt(0),			// column 3 checkbox state
-		ui.TableInt(0),			// column 5 progress
+		ui.TableString(""), // column 0 text
+		ui.TableString(""), // column 1 text
+		ui.TableString(""), // column 2 text
+		ui.TableColor{},    // row background color
+		ui.TableColor{},    // column 1 text color
+		ui.TableImage{},    // column 1 image
+		ui.TableString(""), // column 4 button text
+		ui.TableInt(0),     // column 3 checkbox state
+		ui.TableInt(0),     // column 5 progress
 	}
 }
 
@@ -112,7 +112,7 @@ func (mh *modelHandler) SetCellValue(m *ui.TableModel, row, column int, value ui
 	if row == 9 && column == 2 {
 		mh.row9Text = string(value.(ui.TableString))
 	}
-	if column == 6 {		// row background color
+	if column == 6 { // row background color
 		prevYellowRow := mh.yellowRow
 		mh.yellowRow = row
 		if prevYellowRow != -1 {
@@ -120,7 +120,7 @@ func (mh *modelHandler) SetCellValue(m *ui.TableModel, row, column int, value ui
 		}
 		m.RowChanged(mh.yellowRow)
 	}
-	if column == 7 {		// checkboxes
+	if column == 7 { // checkboxes
 		mh.checkStates[row] = int(value.(ui.TableInt))
 	}
 }
@@ -162,8 +162,8 @@ func setupUI() {
 	model := ui.NewTableModel(mh)
 
 	table := ui.NewTable(&ui.TableParams{
-		Model:	model,
-		RowBackgroundColorModelColumn:	3,
+		Model:                         model,
+		RowBackgroundColorModelColumn: 3,
 	})
 	mainwin.SetChild(table)
 	mainwin.SetMargined(true)
@@ -174,8 +174,8 @@ func setupUI() {
 	table.AppendImageTextColumn("Column 2",
 		5,
 		1, ui.TableModelColumnNeverEditable, &ui.TableTextColumnOptionalParams{
-			ColorModelColumn:		4,
-		});
+			ColorModelColumn: 4,
+		})
 	table.AppendTextColumn("Editable",
 		2, ui.TableModelColumnAlwaysEditable, nil)
 

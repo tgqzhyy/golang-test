@@ -21,9 +21,9 @@ func closeFile(f3 interface{}) {
 
 func createFile(i string) *os.File {
 	fmt.Println("creating")
-	f ,err := os.Create(i)
+	f, err := os.Create(i)
 	if err != nil {
 		panic(err)
 	}
-	return  f
+	return f
 }

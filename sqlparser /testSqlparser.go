@@ -7,19 +7,20 @@ import (
 	"github.com/xwb1989/sqlparser"
 	"io/ioutil"
 )
+
 /**
 use this library github.com/xwb1989/sqlparser
 
- */
+*/
 func main() {
 	b, err := ioutil.ReadFile("abc.sql")
 	if err != nil {
 		fmt.Println("Read File ERR::", err.Error())
 		return
 	}
-		//fmt.Println(string(b))
+	//fmt.Println(string(b))
 	_createTable := golibs.SliceByteToString(b)
-		//fmt.Println(_createTable)
+	//fmt.Println(_createTable)
 	{
 
 		stmt, err := sqlparser.Parse(_createTable)

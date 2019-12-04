@@ -23,6 +23,7 @@ func main() {
 	p("Len: ", len("hello"))
 	p("Char:", "hello"[1])
 }
+
 /**
 Contains:   true
 Count:      2
@@ -40,4 +41,4 @@ ToUpper:    TEST
 Len:  5
 Char: 101
 
- */
+*/

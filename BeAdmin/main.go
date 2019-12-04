@@ -1,11 +1,10 @@
 package main
 
 import (
-	_ "golang-test/BeAdmin/routers"
 	"github.com/astaxie/beego"
+	_ "golang-test/BeAdmin/routers"
 )
 
 func main() {
 	beego.Run()
 }
-

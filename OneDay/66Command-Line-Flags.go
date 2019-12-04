@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 )
+
 /**
 go build 66Command-Line-Flags.go
 ./66Command-Line-Flags.go -word=opt -numb=7 -fork -svar=flag
@@ -12,7 +13,7 @@ numb: 7
 fork: true
 svar: flag
 tail: []
- */
+*/
 func main() {
 
 	wordPtr := flag.String("word", "foo", "a string")

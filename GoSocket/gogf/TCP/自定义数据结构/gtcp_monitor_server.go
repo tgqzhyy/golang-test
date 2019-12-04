@@ -13,18 +13,18 @@ func main() {
 	gtcp.NewServer("localhost:8999", func(conn *gtcp.Conn) {
 
 		defer conn.Close()
-		for{
-			data,err :=conn.RecvPkg()
-			if err !=nil{
-				if err.Error() =="EOF"{
+		for {
+			data, err := conn.RecvPkg()
+			if err != nil {
+				if err.Error() == "EOF" {
 					glog.Println("client closed")
 				}
 				break
 			}
 			info := &types.NodeInfo{}
-			if err :=json.Unmarshal(data,info); err !=nil{
-				glog.Errorf("invalid package structrue:%s \n",err.Error())
-			}else {
+			if err := json.Unmarshal(data, info); err != nil {
+				glog.Errorf("invalid package structrue:%s \n", err.Error())
+			} else {
 				glog.Println(info)
 				conn.SendPkg([]byte("ok"))
 			}

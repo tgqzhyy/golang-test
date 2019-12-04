@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	timer1 :=time.NewTicker(2 * time.Second)
+	timer1 := time.NewTicker(2 * time.Second)
 
 	<-timer1.C
 	fmt.Println("Timer 1 expired")
@@ -17,13 +17,14 @@ func main() {
 		fmt.Println("Timer 2 expired")
 	}()
 
-	stop2 :=timer2.Stop()
-	if stop2{
+	stop2 := timer2.Stop()
+	if stop2 {
 		fmt.Println("Timer 2 stopped")
 	}
 }
+
 /**
 Timer 1 expired
 Timer 2 stopped
 
- */
+*/

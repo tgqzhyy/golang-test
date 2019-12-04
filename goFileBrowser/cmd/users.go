@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"text/tabwriter"
 
-	"golang-test/goFileBrowser/settings"
-	"golang-test/goFileBrowser/users"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
+	"golang-test/goFileBrowser/settings"
+	"golang-test/goFileBrowser/users"
 )
 
 func init() {

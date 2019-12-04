@@ -11,66 +11,70 @@ import (
 )
 
 //数据包的类型
-const(
-	HEART_BEAT_PACKET =0x00
-	REPORT_PACKET=0X01
+const (
+	HEART_BEAT_PACKET = 0x00
+	REPORT_PACKET     = 0x01
 )
 
-var(
-	server= "0.0.0.0:9999"
+var (
+	server = "0.0.0.0:9999"
 )
+
 //这里是包的结构体
 type Packet struct {
-	PacketType 	byte
-	PacketContent	[]byte
+	PacketType    byte
+	PacketContent []byte
 }
 
 //心跳包，这里用json来序列化，也可以用github上的gogo/probobuf包
 //具体见(https://github.com/gogo/protobuf)
 type HeartPacket struct {
-	Version string`json:"version"`
-	Timestamp int64`json:"timestamp"`
+	Version   string `json:"version"`
+	Timestamp int64  `json:"timestamp"`
 }
+
 //正式上传的数据包
 type ReportPacket struct {
-	Content string`json:"content"`
-	Rand 	int`json:"rand"`
-	Timestamp int64`json:"timestamp"`
+	Content   string `json:"content"`
+	Rand      int    `json:"rand"`
+	Timestamp int64  `json:"timestamp"`
 }
+
 //与服务器相关的资源都放在这里面
 type TcpServer struct {
-	listener *net.TCPListener
+	listener   *net.TCPListener
 	hawkServer *net.TCPAddr
 }
 
 func checkErr(err error) {
-	if err !=nil{
+	if err != nil {
 		fmt.Println(err)
 		os.Exit(-1)
 	}
 }
 func main() {
 	//类似与初始化套接字，绑定端口
-	hawkServer,err :=net.ResolveTCPAddr("tcp",server)
+	hawkServer, err := net.ResolveTCPAddr("tcp", server)
 	checkErr(err)
 	//监听
-	listen,err :=net.ListenTCP("tcp",hawkServer)
+	listen, err := net.ListenTCP("tcp", hawkServer)
 	checkErr(err)
 	defer listen.Close()
-	tcpServer :=&TcpServer{
+	tcpServer := &TcpServer{
 		listener:   listen,
 		hawkServer: hawkServer,
 	}
 	fmt.Println("start server successfull....")
 	//开始接收请求
-	for{
-		conn,err :=tcpServer.listener.Accept()
-		fmt.Println("accept tcp client %s",conn.RemoteAddr().String())
+	for {
+		conn, err := tcpServer.listener.Accept()
+		fmt.Println("accept tcp client %s", conn.RemoteAddr().String())
 		checkErr(err)
 		//每次建立一个连接就放到单独的协程内做处理
 		go Handle(conn)
 	}
 }
+
 //处理函数，这是一个状态机
 //根据数据包来做解析
 //数据包的格式为|0xFF|0xFF|len(高)|len(低)|Data|CRC高16位|0xFF|0xFE
@@ -81,45 +85,45 @@ func Handle(conn net.Conn) {
 	// close connection before exit
 	defer conn.Close()
 	// 状态机状态
-	state :=0x00
+	state := 0x00
 	// 数据包长度
-	length :=uint16(0)
+	length := uint16(0)
 	// crc校验和
-	crc16 :=uint16(0)
+	crc16 := uint16(0)
 	var recvBuffer []byte
 	// 游标
 	cursor := uint16(0)
-	bufferReader :=bufio.NewReader(conn)
+	bufferReader := bufio.NewReader(conn)
 
 	//状态机处理数据
-	for{
-		recvByte,err :=bufferReader.ReadByte()
-		if err !=nil{
+	for {
+		recvByte, err := bufferReader.ReadByte()
+		if err != nil {
 			//这里因为做了心跳，所以就没有加deadline时间，如果客户端断开连接
 			//这里ReadByte方法返回一个io.EOF的错误，具体可以考虑文档
-			if err ==io.EOF{
-				fmt.Printf("client %s is close!\n",conn.RemoteAddr().String())
+			if err == io.EOF {
+				fmt.Printf("client %s is close!\n", conn.RemoteAddr().String())
 			}
 			//在这里直接退出goroutine,关闭有defer操作完成
 			return
 		}
 		//进入状态机，根据不同的状态来处理
-		switch state{
+		switch state {
 		case 0x00:
-			if recvByte==0xFF{
-				state =0x01
+			if recvByte == 0xFF {
+				state = 0x01
 				//初始化状态机
-				recvBuffer =nil
-				length=0
-				crc16 =0
-			}else {
-				state =0x00
+				recvBuffer = nil
+				length = 0
+				crc16 = 0
+			} else {
+				state = 0x00
 			}
 			break
 		case 0x01:
-			if recvByte == 0xFF{
+			if recvByte == 0xFF {
 				state = 0x02
-			}else {
+			} else {
 				state = 0x00
 			}
 			break
@@ -130,47 +134,47 @@ func Handle(conn net.Conn) {
 		case 0x03:
 			length += uint16(recvByte)
 			// 一次申请缓存，初始化游标，准备读数据
-			recvBuffer =make([]byte,length)
+			recvBuffer = make([]byte, length)
 			cursor = 0
-			state =0x04
+			state = 0x04
 			break
 		case 0x04:
 			//不断地在这个状态下读数据，直到满足长度为止
-			recvBuffer[cursor]=recvByte
+			recvBuffer[cursor] = recvByte
 			cursor++
 			if cursor == length {
-				state=0x05
+				state = 0x05
 			}
 			break
 		case 0x05:
-			crc16 += uint16(recvByte)*256
-			state =0x06
+			crc16 += uint16(recvByte) * 256
+			state = 0x06
 			break
 		case 0x06:
 			crc16 += uint16(recvByte)
-			state =0x07
+			state = 0x07
 			break
 		case 0x07:
-			if recvByte == 0xFF{
-				state =0x08
-			}else {
-				state =0x00
+			if recvByte == 0xFF {
+				state = 0x08
+			} else {
+				state = 0x00
 			}
 		case 0x08:
-			if recvByte ==0xFE{
+			if recvByte == 0xFE {
 				//执行数据包校验
-				if (crc32.ChecksumIEEE(recvBuffer) >> 16)& 0xFFFF == uint32(crc16){
+				if (crc32.ChecksumIEEE(recvBuffer)>>16)&0xFFFF == uint32(crc16) {
 					var packet Packet
 					//把拿到的数据反序列化出来
-					json.Unmarshal(recvBuffer,&packet)
+					json.Unmarshal(recvBuffer, &packet)
 					//新开协程处理数据
-					go processRecvData(&packet,conn)
-				}else {
+					go processRecvData(&packet, conn)
+				} else {
 					fmt.Println("丢弃数据！！！")
 				}
 			}
 			//状态机归位，接收下一个包
-			state =0x00
+			state = 0x00
 		}
 
 	}
@@ -181,14 +185,14 @@ func processRecvData(packet *Packet, conn net.Conn) {
 	switch packet.PacketType {
 	case HEART_BEAT_PACKET:
 		var beatPacket HeartPacket
-		json.Unmarshal(packet.PacketContent,&beatPacket)
-		fmt.Printf("recieve heat beat from [%s] ,data is [%v]\n",conn.RemoteAddr().String(),beatPacket)
+		json.Unmarshal(packet.PacketContent, &beatPacket)
+		fmt.Printf("recieve heat beat from [%s] ,data is [%v]\n", conn.RemoteAddr().String(), beatPacket)
 		conn.Write([]byte("heartBeat\n"))
 		return
 	case REPORT_PACKET:
 		var reportPacket ReportPacket
-		json.Unmarshal(packet.PacketContent,&reportPacket)
-		fmt.Printf("recieve report data from [%s] ,data is [%v]\n",conn.RemoteAddr().String(),reportPacket)
+		json.Unmarshal(packet.PacketContent, &reportPacket)
+		fmt.Printf("recieve report data from [%s] ,data is [%v]\n", conn.RemoteAddr().String(), reportPacket)
 		conn.Write([]byte("Report data has recive\n"))
 		return
 	}

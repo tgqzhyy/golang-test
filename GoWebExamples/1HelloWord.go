@@ -8,11 +8,10 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w,"Hello,you've requested:%s\n",r.URL.Path)
+		fmt.Fprintf(w, "Hello,you've requested:%s\n", r.URL.Path)
 	})
 	log.Print("http://localhost:8090")
 
-	http.ListenAndServe(":8090",nil)
-
+	http.ListenAndServe(":8090", nil)
 
 }

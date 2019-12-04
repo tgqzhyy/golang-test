@@ -6,9 +6,10 @@ import (
 	"github.com/gogf/gf/net/gtcp"
 	"github.com/gogf/gf/util/gconv"
 )
+
 /**
 emm绝逼拦截，当恶意爬虫拦截在外了
- */
+*/
 func main() {
 	conn, err := gtcp.NewConn("www.qq.com:80")
 	if err != nil {
@@ -20,8 +21,8 @@ func main() {
 		panic(err)
 	}
 
-	header        := make([]byte, 0)
-	content       := make([]byte, 0)
+	header := make([]byte, 0)
+	content := make([]byte, 0)
 	contentLength := 0
 	for {
 		data, err := conn.RecvLine()

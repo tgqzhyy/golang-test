@@ -18,7 +18,7 @@ func main() {
 
 	// Connect function to application startup event, this is not required.
 	application.Connect("startup", func() {
-		log.Println("application startup")	
+		log.Println("application startup")
 	})
 
 	// Connect function to application activate event
@@ -51,7 +51,7 @@ func main() {
 
 	// Connect function to application shutdown event, this is not required.
 	application.Connect("shutdown", func() {
-		log.Println("application shutdown")	
+		log.Println("application shutdown")
 	})
 
 	// Launch the application
@@ -73,8 +73,8 @@ func errorCheck(e error) {
 	}
 }
 
-// onMainWindowDestory is the callback that is linked to the 
-// on_main_window_destroy handler. It is not required to map this, 
+// onMainWindowDestory is the callback that is linked to the
+// on_main_window_destroy handler. It is not required to map this,
 // and is here to simply demo how to hook-up custom callbacks.
 func onMainWindowDestroy() {
 	log.Println("onMainWindowDestroy")

@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"golang-test/goFileBrowser/users"
 	"github.com/spf13/cobra"
+	"golang-test/goFileBrowser/users"
 )
 
 func init() {

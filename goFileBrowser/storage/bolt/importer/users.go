@@ -5,10 +5,10 @@ import (
 	"fmt"
 
 	"github.com/asdine/storm"
+	bolt "go.etcd.io/bbolt"
 	"golang-test/goFileBrowser/rules"
 	"golang-test/goFileBrowser/storage"
 	"golang-test/goFileBrowser/users"
-	bolt "go.etcd.io/bbolt"
 )
 
 type oldUser struct {

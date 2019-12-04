@@ -17,9 +17,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/spf13/afero"
 	"golang-test/goFileBrowser/errors"
 	"golang-test/goFileBrowser/rules"
-	"github.com/spf13/afero"
 )
 
 // FileInfo describes a file.

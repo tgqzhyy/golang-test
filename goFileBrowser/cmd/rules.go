@@ -3,12 +3,12 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 	"golang-test/goFileBrowser/rules"
 	"golang-test/goFileBrowser/settings"
 	"golang-test/goFileBrowser/storage"
 	"golang-test/goFileBrowser/users"
-	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 )
 
 func init() {
@@ -18,8 +18,8 @@ func init() {
 }
 
 var rulesCmd = &cobra.Command{
-	Use:     "rules",
-	Short:   "Rules management utility",
+	Use:   "rules",
+	Short: "Rules management utility",
 	Long: `On each subcommand you'll have available at least two flags:
 "username" and "id". You must either set only one of them
 or none. If you set one of them, the command will apply to

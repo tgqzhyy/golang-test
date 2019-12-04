@@ -42,36 +42,36 @@ type jsoninfo struct {
 }
 
 func main() {
-	ipLocation("114.114.114.114","xml")
+	ipLocation("114.114.114.114", "xml")
 }
 
-func ipLocation(ip string,dataType string) {
+func ipLocation(ip string, dataType string) {
 
-	queryUrl := fmt.Sprintf("%s?ip=%s&datatype=%s",URL,ip,dataType)
+	queryUrl := fmt.Sprintf("%s?ip=%s&datatype=%s", URL, ip, dataType)
 	client := &http.Client{}
-	reqest, err := http.NewRequest("GET",queryUrl,nil)
+	reqest, err := http.NewRequest("GET", queryUrl, nil)
 
 	if err != nil {
-		fmt.Println("Fatal error ",err.Error())
+		fmt.Println("Fatal error ", err.Error())
 	}
 
-	reqest.Header.Add("token",TOKEN)
+	reqest.Header.Add("token", TOKEN)
 	response, err := client.Do(reqest)
 	defer response.Body.Close()
 
 	if err != nil {
-		fmt.Println("Fatal error ",err.Error())
+		fmt.Println("Fatal error ", err.Error())
 	}
 	if response.StatusCode == 200 {
 		bodyByte, _ := ioutil.ReadAll(response.Body)
 
 		if dataType == "jsonp" {
 			var info jsoninfo
-			json.Unmarshal(bodyByte,&info)
+			json.Unmarshal(bodyByte, &info)
 			fmt.Println(info.Ip)
 		} else if dataType == "xml" {
 			var info xmlinfo
-			xml.Unmarshal(bodyByte,&info)
+			xml.Unmarshal(bodyByte, &info)
 			log.Println("输出归属地")
 			fmt.Println(info.Ip)
 		}
