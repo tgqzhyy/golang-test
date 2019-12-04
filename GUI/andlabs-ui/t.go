@@ -10,7 +10,10 @@ func main() {
 	err := ui.Main(func() {
 		window := ui.NewWindow("title", 200, 100, false)
 		label := ui.NewLabel("text")
+		//grid := ui.NewColorButton()
+
 		window.SetChild(label)
+		//window.SetChild(grid)
 		window.OnClosing(func(*ui.Window) bool {
 			ui.Quit()
 			return true
