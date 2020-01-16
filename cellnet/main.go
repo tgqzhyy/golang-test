@@ -24,6 +24,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/davyxu/cellnet/codec/gogopb/test"
 	"net/http"
 	"reflect"
 	"time"
@@ -89,6 +90,8 @@ func client() {
 		case *TestEchoACK:
 
 			log.Debugf("recv: %+v %v", msg, []byte("鲍勃"))
+		case *test.ContentACK:
+
 		}
 	})
 
