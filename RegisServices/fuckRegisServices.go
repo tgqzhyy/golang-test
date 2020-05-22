@@ -1,71 +1,100 @@
 package main
 
 import (
-	"github.com/kardianos/service"
+	"context"
+	"flag"
+	"fmt"
+	"github.com/chai2010/winsvc"
 	"log"
+	"net/http"
 	"os"
+	"path/filepath"
+	"time"
 )
 
-var logging service.Logger
+/**
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build fuckRegisServices.go
 
-type program struct{}
+*/
+var (
+	server *http.Server
+)
+var (
+	appPath              string
+	flagServiceName      = flag.String("service-name", "myserver", "Set service name")
+	flagServiceDesc      = flag.String("service-desc", "myserver service", "Set service description")
+	flagServiceInstall   = flag.Bool("service-install", false, "Install service")
+	flagServiceUninstall = flag.Bool("service-remove", false, "Remove service")
+	flagServiceStart     = flag.Bool("service-start", false, "Start service")
+	flagServiceStop      = flag.Bool("service-stop", false, "Stop service")
+)
 
-func (p *program) Start(s service.Service) error {
-	logging.Info("开始服务")
-
-	go p.run()
-	return nil
+func init() {
+	// change to current dir
+	var err error
+	if appPath, err = winsvc.GetAppPath(); err != nil {
+		log.Fatal(err)
+	}
+	if err := os.Chdir(filepath.Dir(appPath)); err != nil {
+		log.Fatal(err)
+	}
 }
-func (p *program) Stop(s service.Service) error {
-	logging.Info("停止服务")
-	return nil
-}
-func (p *program) run() {
-	// 这里放置程序要执行的代码……
-	logging.Info("run my ccc")
-}
-
 func main() {
-	//服务的配置信息
-	cfg := &service.Config{
-		Name:        "simple_test",
-		DisplayName: "a simple_test service",
-		Description: "This is an simple_test Go service.",
-	}
-	// Interface 接口
-	prg := &program{}
-	// 构建服务对象
-	s, err := service.New(prg, cfg)
-	if err != nil {
-		log.Fatal(err)
-	}
-	// logger 用于记录系统日志
-	errs := make(chan error, 5)
-	logging, err = s.Logger(errs)
-	if err != nil {
-		log.Fatal(err)
-	}
-	go func() {
-		for {
-			err := <-errs
-			if err != nil {
-				log.Print(err)
-			}
+	flag.Parse()
+	// install service
+	if *flagServiceInstall {
+		if err := winsvc.InstallService(appPath, *flagServiceName, *flagServiceDesc); err != nil {
+			log.Fatalf("installService(%s, %s): %v\n", *flagServiceName, *flagServiceDesc, err)
 		}
-	}()
-
-	if len(os.Args) == 2 { //如果有命令则执行
-		err = service.Control(s, os.Args[1])
-		if err != nil {
-			log.Fatal(err)
-		}
-	} else { //否则说明是方法启动了
-		err = s.Run()
-		if err != nil {
-			logging.Error(err)
-		}
+		fmt.Printf("Done\n")
+		return
 	}
-	if err != nil {
-		logging.Error(err)
+	// remove service
+	if *flagServiceUninstall {
+		if err := winsvc.RemoveService(*flagServiceName); err != nil {
+			log.Fatalln("removeService:", err)
+		}
+		fmt.Printf("Done\n")
+		return
 	}
+	// start service
+	if *flagServiceStart {
+		if err := winsvc.StartService(*flagServiceName); err != nil {
+			log.Fatalln("startService:", err)
+		}
+		fmt.Printf("Done\n")
+		return
+	}
+	// stop service
+	if *flagServiceStop {
+		if err := winsvc.StopService(*flagServiceName); err != nil {
+			log.Fatalln("stopService:", err)
+		}
+		fmt.Printf("Done\n")
+		return
+	}
+	// run as service
+	if !winsvc.InServiceMode() {
+		log.Println("main:", "runService")
+		if err := winsvc.RunAsService(*flagServiceName, StartServer, StopServer, false); err != nil {
+			log.Fatalf("svc.Run: %v\n", err)
+		}
+		return
+	}
+	// run as normal
+	StartServer()
+}
+func StartServer() {
+	log.Println("StartServer, port = 8080")
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "winsrv server", time.Now())
+	})
+	server = &http.Server{Addr: ":8080"}
+	server.ListenAndServe()
+}
+func StopServer() {
+	if server != nil {
+		server.Shutdown(context.Background()) // Go 1.8+
+	}
+	log.Println("StopServer")
 }
