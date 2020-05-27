@@ -14,7 +14,8 @@ import (
 
 /**
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build fuckRegisServices.go
-
+github.com/chai2010/winsvc
+仅可在Windows上面进行服务注册，注册成功后需要手动启动一次，或者重启系统。
 */
 var (
 	server *http.Server
