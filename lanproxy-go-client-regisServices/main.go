@@ -341,7 +341,7 @@ func main() {
 func StartServer() {
 	//start(c.String("k"), c.String("s"), c.Int("p"), conf)
 	var conf *tls.Config
-	start("key", "IP", 4900, conf)
+	start("key", "IP", 4900, conf) // TODO 修改这里固化配置信息
 	//log.Println("StartServer, port = 8080")
 	//http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Fprintln(w, "winsrv server", time.Now())

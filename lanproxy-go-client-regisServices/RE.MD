@@ -12,7 +12,7 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build main.go
 # 注册为Windows服务
 $ lanproxy-go-client-regisServices.exe -service-install
 # 启动和停止Windows服务
-$ lanproxy-go-client-regisServices.exe -service-start
+$ lanproxy-go-client-regisServices.exe -service-start  
 $ lanproxy-go-client-regisServices.exe -service-stop
 # 删除服务
 # 删除之前需要先停止服务
