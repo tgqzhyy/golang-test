@@ -1,0 +1,16 @@
+# github.com/cespare/xxhash v1.1.0
+## explicit
+github.com/cespare/xxhash
+# github.com/gorilla/websocket v1.4.2
+## explicit
+github.com/gorilla/websocket
+# github.com/ha666/golibs v2020.712.900+incompatible
+## explicit
+github.com/ha666/golibs
+# github.com/jpillora/backoff v0.0.0-20180909062703-3050d21c67d7
+## explicit
+github.com/jpillora/backoff
+# golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
+## explicit
+golang.org/x/crypto/bcrypt
+golang.org/x/crypto/blowfish
