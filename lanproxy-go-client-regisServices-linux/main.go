@@ -287,7 +287,11 @@ func (p *program) Start(s service.Service) error {
 func (p *program) run() {
 	// Do work here
 	var conf *tls.Config
-	start("key", "ip", 4900, conf) // TODO 修改这里固化配置信息
+	ip := "域名"
+	if raw_connect(ip, []string{"4900"}) == false { // 目前仅是在启动的时候进行判断
+		ip = "固定ip"
+	}
+	start("key", ip, 4900, conf) // TODO 修改这里固化配置信息
 	//fmt.Println("先打印一行文字再说")
 }
 func (p *program) Stop(s service.Service) error {
@@ -296,6 +300,24 @@ func (p *program) Stop(s service.Service) error {
 	return nil
 }
 
+//端口检测
+func raw_connect(host string, ports []string) bool {
+	for _, port := range ports {
+		timeout := time.Second
+		conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, port), timeout)
+		if err != nil {
+			//fmt.Println("Connecting error:", err)
+			log.Println("链接错误")
+			return false
+		}
+		if conn != nil {
+			defer conn.Close()
+			//fmt.Println("Opened", net.JoinHostPort(host, port))
+			return true
+		}
+	}
+	return false
+}
 func main() {
 	// 服务的配置信息
 	svcConfig := &service.Config{

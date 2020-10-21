@@ -338,10 +338,33 @@ func main() {
 	// run as normal
 	StartServer()
 }
+
+//端口检测
+func raw_connect(host string, ports []string) bool {
+	for _, port := range ports {
+		timeout := time.Second
+		conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, port), timeout)
+		if err != nil {
+			//fmt.Println("Connecting error:", err)
+			log.Println("链接错误")
+			return false
+		}
+		if conn != nil {
+			defer conn.Close()
+			//fmt.Println("Opened", net.JoinHostPort(host, port))
+			return true
+		}
+	}
+	return false
+}
 func StartServer() {
 	//start(c.String("k"), c.String("s"), c.Int("p"), conf)
 	var conf *tls.Config
-	start("key", "IP", 4900, conf) // TODO 修改这里固化配置信息
+	ip := "域名"
+	if raw_connect(ip, []string{"4900"}) == false { // 目前仅是在启动的时候进行判断
+		ip = "固定IP"
+	}
+	start("key", ip, 4900, conf) // TODO 修改这里固化配置信息
 	//log.Println("StartServer, port = 8080")
 	//http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 	//	fmt.Fprintln(w, "winsrv server", time.Now())

@@ -8,7 +8,7 @@ lanproxy-go-client https://github.com/ffay/lanproxy-go-client
 在Windows上面把客户端注册为服务，emmm有源码直接改写就好了，不使用其他外挂式方式。
 
 # 交叉编译
-CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build main.go
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags "-s -w"  main.go
 # 注册为Windows服务
 $ lanproxy-go-client-regisServices.exe -service-install
 # 启动和停止Windows服务
