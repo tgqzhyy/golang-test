@@ -19,12 +19,12 @@ func main() {
 	一旦我们的文件服务器到位，我们只需要指向它的url路径，就像处理动态请求一样。需要注意的一件事：为了正确提供文件，我们需要剥离一部分url路径。通常，这是我们文件所在目录的名称。
 	*/
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
-	log.Print("http://localhost:8090")
-	http.ListenAndServe(":8090", nil)
+	log.Print("http://localhost:8091")
+	http.ListenAndServe(":8091", nil)
 }
 
 /**
 landv@landv-PC:~/go/src/golang-test/GoWebExamples$ go run 2HttpServer.go
-2019/10/25 08:50:26 http://localhost:8090
+2019/10/25 08:50:26 http://localhost:8091
 
 */
