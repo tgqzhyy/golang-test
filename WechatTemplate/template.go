@@ -25,6 +25,10 @@ var (
 	SentTemplateID = "-b1MHuYqjKRZSCdXhMBJa9Dm7OkqqSUdgU0ZuTNHvQA" //每日一句的模板ID，替换成自己的
 )
 
+//IPListRes 获取微信服务器IP地址 返回结果
+type IPListRes struct {
+	IPList []string `json:"ip_list"`
+}
 type token struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int    `json:"expires_in"`
@@ -46,7 +50,8 @@ func main() {
 	//fmt.Println("开启定时任务")
 	//select {}
 
-	everydaysen()
+	//everydaysen()
+	getWechatServerIP()
 
 }
 
@@ -163,4 +168,37 @@ func templatepost(access_token string, reqdata string, fxurl string, templateid 
 	}
 
 	fmt.Println(string(body))
+}
+
+//获取微信服务器ip
+func getWechatServerIP() {
+	access_token := getaccesstoken()
+	if access_token == "" {
+		return
+	}
+	url := "https://api.weixin.qq.com/cgi-bin/get_api_domain_ip?access_token=" + access_token
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println(string(body))
+	ipListRes := &IPListRes{}
+	err = json.Unmarshal(body, &ipListRes)
+	if err != nil {
+		fmt.Println(err)
+	}
+	//a := ipListRes.IPList[0:1]
+	//fmt.Printf("%s",a)
+	fmt.Println("微信服务器地址：")
+	for index, value := range ipListRes.IPList {
+		fmt.Printf("index: %d value: %s\n", index, value)
+	}
 }

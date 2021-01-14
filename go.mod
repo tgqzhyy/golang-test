@@ -59,6 +59,7 @@ require (
 	github.com/pelletier/go-toml v1.2.0
 	github.com/robfig/cron v1.2.0
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/silenceper/wechat/v2 v2.0.4 // indirect
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/spf13/afero v1.2.2
 	github.com/spf13/cobra v1.1.1
@@ -79,7 +80,7 @@ require (
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	github.com/zserge/lorca v0.1.9
 	go.etcd.io/bbolt v1.3.5
-	golang.org/x/crypto v0.0.0-20200930160638-afb6bcd081ae
+	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
 	golang.org/x/net v0.0.0-20201224014010-6772e930b67b // indirect
 	golang.org/x/sync v0.0.0-20200317015054-43a5402ce75a
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
