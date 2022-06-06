@@ -27,7 +27,6 @@ require (
 	github.com/foolin/gin-template v0.0.0-20190415034731-41efedfb393b
 	github.com/gen2brain/dlgs v0.0.0-20201118155338-03fe7f81ad25
 	github.com/gin-gonic/gin v1.6.3
-	github.com/go-gl/example v0.0.0-20201108203720-b38b3a6e99b9 // indirect
 	github.com/go-gl/gl v0.0.0-20190320180904-bf2b1f2f34d7
 	github.com/go-gl/glfw v0.0.0-20201108214237-06ea97f0c265
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200707082815-5321531c36a2
@@ -57,16 +56,15 @@ require (
 	github.com/nwaples/rardecode v1.1.0 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pelletier/go-toml v1.2.0
-	github.com/robfig/cron v1.2.0
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/silenceper/wechat/v2 v2.0.4 // indirect
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/spf13/afero v1.2.2
+	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.7.1
 	github.com/tealeg/xlsx v1.0.5
-	github.com/tidwall/gjson v1.6.7
+	github.com/tidwall/gjson v1.9.3
 	github.com/ulikunitz/xz v0.5.9 // indirect
 	github.com/valyala/fasthttp v1.19.0 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
@@ -76,14 +74,12 @@ require (
 	github.com/webview/webview v0.0.0-20210105105125-bc486a3e2c2c
 	github.com/wudaoluo/goutil v0.0.0-20180709054605-56b02d8e0f5e
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
-	github.com/xwb1989/sqlparser v0.0.0-20180606152119-120387863bf2
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	github.com/zserge/lorca v0.1.9
 	go.etcd.io/bbolt v1.3.5
 	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
 	golang.org/x/net v0.0.0-20201224014010-6772e930b67b // indirect
 	golang.org/x/sync v0.0.0-20200317015054-43a5402ce75a
-	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v2 v2.2.8
 	xorm.io/builder v0.3.7
